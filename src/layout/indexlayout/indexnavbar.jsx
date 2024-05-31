@@ -1,9 +1,12 @@
 import { NavLink } from "react-router-dom";
-import { Input } from "antd";
+import { Input, Button, Avatar } from "antd";
+import { SearchOutlined } from "@ant-design/icons";
 const { Search } = Input;
 export default function IndexNavbar() {
     const logoImg =
         "https://upload.wikimedia.org/wikipedia/commons/1/1a/Dolby_logo_2019.svg";
+
+    const userImg = "https://img2.imgtp.com/2024/04/09/OmWWam4c.jpg";
 
     const onSearch = (value, _e, info) => console.log(info?.source, value);
 
@@ -30,7 +33,22 @@ export default function IndexNavbar() {
                 </div>
             </div>
             <div className="flex flex-row basis-2/3 justify-end">
-
+                <div className="content-center mr-5">
+                    <Button type="primary" icon={<SearchOutlined />}>
+                        创建合集
+                    </Button>
+                </div>
+                <div className="content-center mr-20">
+                    <Button type="primary" icon={<SearchOutlined />}>
+                        上传照片
+                    </Button>
+                </div>
+                <div className="content-center mr-5">
+                    田皮鸭
+                </div>
+                <div className="content-center mr-8">
+                    <Avatar size={50} src={userImg} />
+                </div>
             </div>
         </div>
     );
