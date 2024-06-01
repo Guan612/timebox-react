@@ -1,11 +1,23 @@
 import {useRoutes,Navigate} from 'react-router-dom'
+
 import Layout from '../layout/indexlayout'
+import Login from '../pages/login'
+import Main from '../pages/main/indes'
 
 const routers = [
     {
         path: '/',
         element: <Layout />,
-        children: []
+        children: [
+            {
+                path: '/',
+                element:<Main/>
+            }
+        ]
+    },
+    {
+        path: "/login",
+        element: <Login />,
     }
 ]
 
