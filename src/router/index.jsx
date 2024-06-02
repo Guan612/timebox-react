@@ -2,7 +2,7 @@ import {useRoutes,Navigate} from 'react-router-dom'
 
 import Layout from '../layout/indexlayout'
 import Login from '../pages/login'
-import Main from '../pages/main/indes'
+import Main from '../pages/main'
 
 const routers = [
     {
