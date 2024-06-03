@@ -2,6 +2,7 @@ import {
     EditOutlined,
     EllipsisOutlined,
     SettingOutlined,
+    HeartOutlined,
 } from "@ant-design/icons";
 import { Avatar, Card } from "antd";
 const { Meta } = Card;
@@ -25,9 +26,9 @@ export default function PhotoCard({ photoUrl, photoName, photoDes }) {
                 />
             }
             actions={[
-                <SettingOutlined key="setting" />,
-                <EditOutlined key="edit" />,
                 <EllipsisOutlined key="ellipsis" />,
+                <EditOutlined key="edit" />,
+                <HeartOutlined key='heart' />,
             ]}
         >
             <Meta title={photoName} description={photoDes} />
