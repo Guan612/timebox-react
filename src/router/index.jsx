@@ -3,6 +3,7 @@ import {useRoutes,Navigate} from 'react-router-dom'
 import Layout from '../layout/indexlayout'
 import Login from '../pages/login'
 import Main from '../pages/main'
+import Photos from '../pages/photos'
 
 const routers = [
     {
@@ -12,6 +13,10 @@ const routers = [
             {
                 path: '/',
                 element:<Main/>
+            },
+            {
+                path: '/photos',
+                element:<Photos/>
             }
         ]
     },
