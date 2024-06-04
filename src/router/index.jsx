@@ -1,31 +1,39 @@
-import {useRoutes,Navigate} from 'react-router-dom'
+import { useEffect } from "react";
+import { useRoutes, Navigate } from "react-router-dom";
+import useAuth from "../hooks/login/useAuth";
 
-import Layout from '../layout/indexlayout'
-import Login from '../pages/login'
-import Main from '../pages/main'
-import Photos from '../pages/photos'
+import Layout from "../layout/indexlayout";
+import Login from "../pages/login";
+import Main from "../pages/main";
+import Photos from "../pages/photos";
+
+// RequireAuth 组件用于路由保护
+const RequireAuth = ({ element }) => {
+    const auth = useAuth();
+    return auth ? element : <Navigate to="/login" />;
+};
 
 const routers = [
     {
-        path: '/',
+        path: "/",
         element: <Layout />,
         children: [
             {
-                path: '/',
-                element:<Main/>
+                path: "/",
+                element: <Main />,
             },
             {
-                path: '/photos',
-                element:<Photos/>
-            }
-        ]
+                path: "/photos",
+                element: <RequireAuth element={<Photos />} />,
+            },
+        ],
     },
     {
         path: "/login",
         element: <Login />,
-    }
-]
+    },
+];
 
 export default function Router() {
-    return useRoutes(routers)
+    return useRoutes(routers);
 }
