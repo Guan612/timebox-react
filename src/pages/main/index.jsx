@@ -12,7 +12,7 @@ export default function Main() {
                             photoUrl={item.photoUrl}
                             photoName={item.photoName}
                             photoDes={item.photoDes}
-                            key={index}
+                            key={item.id}
                         />
                     );
                 })}
