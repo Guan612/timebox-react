@@ -1,39 +1,21 @@
-import { useEffect, useState } from "react";
-import { Button, Drawer, Select, message } from "antd";
+import { Button, Drawer, Select } from "antd";
 
-import {
-    findMyPhotoAPI,
-    deletePhotoAPI,
-    getPhotoListAPI,
-    addPhotoCollectionPhotoAPI,
-    filterPhotoAPI,
-} from "../../api/photo";
+import useMyphoto from "../../hooks/myphoto/useMyphoto";
 
 export default function Photos() {
-    const [photoList, setPhotoList] = useState([]);
-    const [open, setOpen] = useState(false);
-    const [photoInfo, setPhotoInfo] = useState({});
-    const [photoCollOption, setPhotoCollOption] = useState([]);
-
-    const getMyPhoto = async () => {
-        const { reslut } = await findMyPhotoAPI();
-        setPhotoList(reslut);
-    };
-
-    const handleChange = (value) => {
-        console.log(`selected ${value}`);
-    };
-
-    const deletePhoto = async (photoId) => {
-        await deletePhotoAPI(photoId);
-        message.success("照片删除成功");
-        getMyPhoto();
-        setOpen(false); // 关闭抽屉
-    };
-
-    useEffect(() => {
-        getMyPhoto();
-    }, []);
+    const {
+        photoList,
+        open,
+        setOpen,
+        photoInfo,
+        setPhotoInfo,
+        photoCollOption,
+        addOption,
+        setAddOption,
+        handleChange,
+        addPhotoCollPhoto,
+        deletePhoto,
+    } = useMyphoto();
 
     return (
         <div className="flex flex-row m-5 justify-center">
@@ -47,39 +29,33 @@ export default function Photos() {
                     {photoInfo.photoAndColl &&
                     photoInfo.photoAndColl.length > 0 ? (
                         <div>
-                            所属照片集合：{photoInfo.photoAndColl[0].photoCollection.photoName}
+                            所属照片集合：
+                            {
+                                photoInfo.photoAndColl[0].photoCollection
+                                    .photoName
+                            }
                         </div>
                     ) : (
                         <div>
-                            <div>还未加入照片集，加入照片集</div>
-                            <div>
+                            <div className="m-1">
+                                还未加入照片集，加入照片集
+                            </div>
+                            <div className="m-1">
                                 <Select
-                                    defaultValue="lucy"
                                     style={{
                                         width: 120,
                                     }}
                                     onChange={handleChange}
-                                    options={[
-                                        {
-                                            value: "jack",
-                                            label: "Jack",
-                                        },
-                                        {
-                                            value: "lucy",
-                                            label: "Lucy",
-                                        },
-                                        {
-                                            value: "Yiminghe",
-                                            label: "yiminghe",
-                                        },
-                                        {
-                                            value: "disabled",
-                                            label: "Disabled",
-                                            disabled: true,
-                                        },
-                                    ]}
+                                    options={photoCollOption}
                                 />
                             </div>
+                            <Button
+                                className="m-1"
+                                type="primary"
+                                onClick={() => addPhotoCollPhoto(photoInfo.id)}
+                            >
+                                确定添加
+                            </Button>
                         </div>
                     )}
                 </div>
