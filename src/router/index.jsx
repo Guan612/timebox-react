@@ -6,6 +6,7 @@ import Layout from "../layout/indexlayout";
 import Login from "../pages/login";
 import Main from "../pages/main";
 import Photos from "../pages/photos";
+import UploadPhoto from "../pages/uploadphoto";
 
 // RequireAuth 组件用于路由保护
 const RequireAuth = ({ element }) => {
@@ -26,6 +27,10 @@ const routers = [
                 path: "/photos",
                 element: <RequireAuth element={<Photos />} />,
             },
+            {
+                path:'/upload',
+                element: <RequireAuth element={<UploadPhoto />} />
+            }
         ],
     },
     {

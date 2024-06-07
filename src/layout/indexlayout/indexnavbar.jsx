@@ -39,13 +39,13 @@ export default function IndexNavbar() {
                     </Button>
                 </div>
                 <div className="content-center mr-20">
-                    <Button type="primary" icon={<SearchOutlined />}>
-                        上传照片
-                    </Button>
+                    <NavLink to={'/upload'}>
+                        <Button type="primary" icon={<SearchOutlined />}>
+                            上传照片
+                        </Button>
+                    </NavLink>
                 </div>
-                <div className="content-center mr-5">
-                    田皮鸭
-                </div>
+                <div className="content-center mr-5">田皮鸭</div>
                 <div className="content-center mr-8">
                     <Avatar size={50} src={userImg} />
                 </div>
